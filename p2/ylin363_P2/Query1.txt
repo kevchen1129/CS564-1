@@ -1,0 +1,19 @@
+-- Name : Yiyang Lin
+-- Student ID: 9080288724
+
+-- customer name, order number, and order size
+SELECT 
+	C_NAME AS Customer_Name,
+	O_ORDERKEY AS Order_Number,
+	sum(L_QUANTITY * (L_EXTENDEDPRICE - L_DISCOUNT)) AS Order_Size
+FROM
+	ORDERS,
+	LINEITEM,
+	CUSTOMER
+WHERE
+	L_ORDERKEY = O_ORDERKEY
+	AND O_CUSTKEY = C_CUSTKEY
+			
+GROUP BY O_ORDERKEY
+ORDER BY order_size DESC
+LIMIT 20

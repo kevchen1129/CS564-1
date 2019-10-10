@@ -1,0 +1,17 @@
+select
+    N_NAME,
+    sum(L_QUANTITY*(L_EXTENDEDPRICE-L_DISCOUNT)) as ordersize 
+from
+    LINEITEM,
+    ORDERS,
+    CUSTOMER,
+    NATION,
+    SUPPLIER
+where
+    L_ORDERKEY=O_ORDERKEY
+    and O_CUSTKEY=C_CUSTKEY
+    and C_NATIONKEY=N_NATIONKEY
+    and L_SUPPKEY=S_SUPPKEY
+    and C_NATIONKEY=S_NATIONKEY
+group by N_NATIONKEY
+order by N_NAME

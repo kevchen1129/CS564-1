@@ -1,0 +1,26 @@
+select
+    S_NAME,
+    cust_count
+from
+    SUPPLIER,
+    (
+        select
+            L_SUPPKEY,
+            count(O_CUSTKEY) as cust_count
+        from
+            (
+                select 
+                    L_SUPPKEY,
+                    O_CUSTKEY
+                from
+                    LINEITEM,
+                    ORDERS
+                where
+                    L_ORDERKEY=O_ORDERKEY
+                group by L_SUPPKEY,O_CUSTKEY
+            )
+        group by L_SUPPKEY having cust_count > 615
+        order by cust_count desc
+    )
+where
+    S_SUPPKEY=L_SUPPKEY

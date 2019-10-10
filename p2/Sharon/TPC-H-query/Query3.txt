@@ -1,0 +1,51 @@
+select
+    o.supp_nationname as NATION_NAME,
+    sum(case 
+            when o.supp_regionkey = o.cust_regionkey 
+            then o.ordervolume 
+        end) as own_ordervolume,
+    sum(case 
+            when o.supp_regionkey != o.cust_regionkey 
+            then o.ordervolume 
+        end) as other_ordervolume
+from
+    (
+        select
+            t.supp_nationname as supp_nationname,
+            t.supp_regionkey as supp_regionkey,
+            sum(t.L_QUANTITY*(t.L_EXTENDEDPRICE-t.L_DISCOUNT)) as ordervolume,
+            N_NAME as cust_nationname,
+            N_REGIONKEY as cust_regionkey
+        from
+            CUSTOMER cust,
+            NATION,
+            REGION,
+            (
+                select 
+                    S_NATIONKEY as supp_nationkey,
+                    N_NAME as supp_nationname,
+                    N_REGIONKEY as supp_regionkey,
+                    L_QUANTITY,
+                    L_EXTENDEDPRICE,
+                    L_DISCOUNT,
+                    C_CUSTKEY
+                from
+                    SUPPLIER,
+                    LINEITEM,
+                    ORDERS,
+                    CUSTOMER,
+                    NATION
+                where
+                    S_SUPPKEY=L_SUPPKEY
+                    and L_ORDERKEY=O_ORDERKEY
+                    and O_CUSTKEY=C_CUSTKEY
+                    and S_NATIONKEY=N_NATIONKEY
+            ) t
+        where
+            t.C_CUSTKEY=cust.C_CUSTKEY
+            and N_NATIONKEY=C_NATIONKEY
+            and R_REGIONKEY=N_REGIONKEY
+        group by t.supp_nationkey,N_NATIONKEY
+    ) o
+group by o.supp_nationname
+order by own_ordervolume desc

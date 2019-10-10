@@ -1,0 +1,268 @@
+//
+// File: wl.h
+//
+//  Description: Add stuff here ...
+//  Student Name: Yiyang Lin
+//  UW Campus ID: 9080288724
+//  enamil: Add stuff here ..
+
+#include <map>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <fstream>
+#include <sstream>
+#include <algorithm>
+#include <locale>
+
+#include "wl.h"
+
+using namespace std;
+
+vector<string> store;
+vector<string> wordList;
+
+int main()
+{
+   User_Input();
+
+   return 0;
+}
+void User_Input()
+{
+   while (true)
+   {
+      vector<string> inputTokens;
+      string userInput;
+      getline(cin, userInput);
+      stringstream check1(userInput);
+      string intermediate;
+      while (getline(check1, intermediate, ' '))
+      {
+         inputTokens.push_back(intermediate);
+      }
+      if (Check_Command(inputTokens))
+      {
+         break;
+      }
+   }
+}
+void Read_File(const string input_filename)
+{
+   cout << "read file!!" << endl;
+   ifstream input;
+   input.open(input_filename);
+
+   string word;
+   while (input >> word)
+   {
+      word = convertCharacter(word);
+      store.push_back(word);
+   }
+   for (int i = 0; i < store.size(); i++)
+   {
+      cout << store[i] << endl;
+   }
+   input.close();
+}
+
+string convertCharacter(string s)
+{
+   int j = 0;
+   for (int i = 0; i < s.size(); i++)
+   {
+      if ((s[i] >= 'A' && s[i] <= 'Z') ||
+          (s[i] >= 'a' && s[i] <= 'z') ||
+          (s[i] == '\'') || (s[i] >= '0' && s[i] <= '0'))
+      {
+         if (s[i] >= 'A' && s[i] <= 'Z')
+      {
+         s[j] = (char)(s[i] + 32);
+      }
+      else
+      {
+         s[j] = s[i];
+      }
+         j++;
+      }
+   }
+   return s.substr(0, j);
+}
+
+bool Check_Command(vector<string> inputTokens)
+{
+   enum INPUT_OPTION
+   {
+      INVALID,
+      LOAD,
+      LOCATE,
+      NEW,
+      END
+   };
+   map<string, INPUT_OPTION> string_to_input;
+   string_to_input["load"] = LOAD;
+   string_to_input["locate"] = LOCATE;
+   string_to_input["new"] = NEW;
+   string_to_input["end"] = END;
+
+   string inputCommand = inputTokens[0];
+   
+   for (int i = 0; i < inputCommand.size(); i++)
+   {
+      if ((inputCommand[i] >= 'A' && inputCommand[i] <= 'Z') ||
+          (inputCommand[i] >= 'a' && inputCommand[i] <= 'z') )
+      {
+         if (inputCommand[i] >= 'A' && inputCommand[i] <= 'Z')
+         {
+            inputCommand[i] = (char)(inputCommand[i] + 32);
+         }
+      }
+   }
+
+   INPUT_OPTION command = string_to_input.find(inputCommand)->second;
+
+   switch (command)
+   {
+   case LOAD:
+   {
+      Command_LOAD(inputTokens[1]);
+      // "sixpence.txt"
+   }
+   break;
+
+   case LOCATE:
+   {
+      string numStr = inputTokens[2];
+
+      stringstream sstream(numStr);
+
+      int n = 0;
+      sstream >> n;
+
+      if(n <= 0)
+      {
+         command = INVALID;
+         cout << "ERROR: Invalid command" << endl;
+      }
+      else
+      Command_LOCATE(inputTokens[1], n);
+   }
+   break;
+
+   case NEW:
+   {
+      Command_NEW();
+   }
+   break;
+
+   case END:
+   {
+      Command_END();
+      return true;
+   }
+   break;
+
+   case INVALID: // fall through to default
+   default:
+      cout << "ERROR: Invalid command" << endl;
+   }
+   return false;
+}
+
+void Command_LOCATE(string word, int number)
+{
+   cout << "locate function" << endl;
+   // cout << word << " " << number << endl;
+   int count = number;
+   
+   string searhWord = word;
+   transform(searhWord.begin(), searhWord.end(), searhWord.begin(), ::tolower);
+   // cout << searhWord << " " << number << endl;
+
+   vector<string>::iterator itr = find(store.begin(), store.end(), searhWord);
+
+   int dis = 0;
+   if (itr != store.cend())
+   {
+      dis += distance(store.begin(), itr) + 1;
+      while(count != 1)
+      {
+         vector<string>::iterator itr1 = itr;
+         count--;
+         itr = find(store.begin() + dis, store.end(), searhWord);
+         dis += distance(itr1, itr);
+      }
+      if(dis > store.size())
+      {
+         cout << "No matching entry\n";
+      }
+      else
+      cout << "Element present at index " << dis << "\n";
+   }
+   else
+   {
+      cout << "No matching entry\n";
+   }
+}
+
+void Command_NEW()
+{
+   cout << "new function" << endl;
+   vector<string> wordList;
+}
+
+void Command_END()
+{
+   cout << "end function" << endl;
+}
+
+void Command_LOAD(string filename)
+{
+   cout << "load function" << endl;
+   Read_File(filename);
+}
+
+// void load(string filename)
+// {
+//    ifstream myfile(filename);
+//    string line;
+
+//    if (myfile.is_open())
+//    {
+//       locator.clear();
+//       string word = "";
+//       int count = 1;
+
+//       while (getline(myfile, line))
+//       {
+//          for (int i = 0; i < line.length(); i++)
+//          {
+//             if (isalpha(str[i]) || isdigit(line[i]) || line[i] == '\'')
+//             {
+//                word = word + tolower(str[i]);
+//             }
+//             else
+//             {
+//                if (locator.count(word) > 0)
+//                {
+//                   vector<int> index = locator.find(word)->second;
+//                   index.pushback(count);
+//                }
+//                else
+//                {
+//                   locator.insert(pair<String, vector<int>>(word, vector<int>(1, count)));
+//                }
+//                word = "";
+//                count++;
+//             }
+//          }
+//       }
+
+//       myfile.close();
+//    }
+//    else
+//    {
+//       cout << "ERROR: Invalid command";
+//    }
+// }

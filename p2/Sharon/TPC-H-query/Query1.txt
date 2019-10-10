@@ -1,0 +1,14 @@
+select 
+    C_NAME as cname, 
+    L_ORDERKEY as orderkey, 
+    sum(L_QUANTITY*(L_EXTENDEDPRICE-L_DISCOUNT)) as size 
+from 
+    CUSTOMER,
+    LINEITEM,
+    ORDERS 
+where 
+    C_CUSTKEY=O_CUSTKEY 
+    and L_ORDERKEY=O_ORDERKEY 
+group by L_ORDERKEY 
+order by size desc 
+limit 20

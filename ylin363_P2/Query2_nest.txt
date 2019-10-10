@@ -1,0 +1,28 @@
+-- Name : Yiyang Lin
+-- Student ID: 9080288724
+
+SELECT
+	Country_Name,
+	sum(L_QUANTITY*(L_EXTENDEDPRICE-L_DISCOUNT)) as Order_Volume 
+FROM
+		(			
+		SELECT 
+                    N_NAME as Country_Name,
+                    L_QUANTITY,
+                    L_EXTENDEDPRICE,
+                    L_DISCOUNT
+                FROM
+                    SUPPLIER,
+                    LINEITEM,
+                    ORDERS,
+                    CUSTOMER,
+                    NATION
+                WHERE
+                    S_SUPPKEY = L_SUPPKEY
+                    AND L_ORDERKEY = O_ORDERKEY
+                    AND O_CUSTKEY = C_CUSTKEY
+                    AND S_NATIONKEY = N_NATIONKEY
+                    AND C_NATIONKEY = N_NATIONKEY
+		)
+
+GROUP BY Country_Name

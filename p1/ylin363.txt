@@ -1,0 +1,55 @@
+Compiling tests for 211765_ylin363 ...
+Test 1 : Correct
+-------------------
+Test 2 : Correct
+-------------------
+Test 3 : Correct
+-------------------
+Test 4 : Correct
+-------------------
+Test 5 : Correct
+-------------------
+Test 6 : Correct
+-------------------
+Test 7 : Correct
+-------------------
+Test 8 : Incorrect
+load multiple files including a large file (worth 2 pts)
+Expected output:
+****************
+>>1
+>>9
+>29822
+>112
+>Program output:
+***************
+>>1
+>>90
+>1
+>193
+>------------------
+Test 9 : Correct
+-------------------
+Test 10 : Correct
+-------------------
+Test 11 : Incorrect
+handle invalid word incorrectly (worth 1 pts)
+Expected output:
+****************
+>>ERROR: Invalid command
+>1
+>ERROR: Invalid command
+>Program output:
+***************
+>>No matching entry
+>1
+>No matching entry
+>------------------
+Test 12 : Correct
+-------------------
+Test 13 : Correct
+-------------------
+Test 14 : Correct
+-------------------
+== TOTAL CORRECT TESTS: 12 ===
+== TOTAL INCORRECT TESTS: 2 ===
