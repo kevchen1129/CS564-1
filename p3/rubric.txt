@@ -1,0 +1,40 @@
+AUTO GRADING PORTION (45):
+    +14: 14 points for compiling
+    +18: 6 points each for 3 provided tests
+    +8: 2 points each for 4 new tests
+    +5: 5 points for exception tests given in original main.cpp 
+
+
+MANUAL GRADING PORTION (55):
+Insert/scan algorithms (35): 
+    +8: Made a mechanism to consider whether the root was a leaf.        
+         NOTE: Could include always making the root a non-leaf, or detecting whether the root has been split.
+    +6: Copied up values of leaf nodes to non-leaf nodes when a split occurred.
+    +6: Attempted to shift values in a leaf to make space for new entry.
+    +10: StartScan() attempts to traverse down the tree to find the page, then linear searches that page. 
+    +5: Has a reasonable amount of code in every function.
+    
+Tests (15):
+    +15: Designing 3 tests with description in outline.txt gets full credit
+        At least 2 can't be related to exception testing (since those tests were provided)
+        If outline.txt just has descriptions of added tests without test code added, get 8 points
+        Full comments provided in text file feedback. 
+    
+Programming Style (5):
+    +5: If there's nothing glaringly wrong with style or difficult to read
+        Comments, indentation, descriptive var names
+
+If a submissions fails the MOSS code plagiarism check, it gets a 0. 
+
+
+Grading order: 
+
+1) Calculate total of test, programming style, and compiling points (max of 34)
+2) If the submission passes at least 1 out of 3 of the given tests add 35 + 6*(number of 3 tests passed) points (max of 53)
+    a) We're assuming that if you pass at least one of the given tests, you would've also received the manual grading points. 
+3) Else if the submission doesn't pass any of the 3 given tests, do manual grading as described above (max of 35)
+4) After either passing any number of the given tests OR doing manual grading, do additional tests 4-8 (13 possible points)
+
+The max points possible while not passing any of the three given tests is an 82 (although if you don't pass the given tests, it's unlikely you'll pass the new tests) 
+The max point total is 100. 
+    

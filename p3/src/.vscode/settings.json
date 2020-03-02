@@ -63,5 +63,11 @@
         "utility": "cpp",
         "vector": "cpp",
         "filesystem": "cpp"
+    },
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
     }
 }

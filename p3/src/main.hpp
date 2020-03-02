@@ -1,7 +1,6 @@
-/**
- * @mainpage BadgerDB Documentation
- *
- * @section toc_sec Table of contents
+ /*
+ *@mainpage BadgerDB Documentation
+ *@section toc_sec Table of contents
  *
  * <ol>
  *   <li> @ref file_layout_sec
@@ -95,7 +94,7 @@
  *  // Create and open a new file with the name "filename.db".
  *  badgerdb::File new_file = badgerdb::File::create("filename.db");
  * @endcode
- * 
+ *
  * If you want to open an existing file, use File::open like so:
  * @code
  *  // Open an existing file with the name "filename.db".

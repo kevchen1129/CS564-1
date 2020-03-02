@@ -1,0 +1,89 @@
+## basic information
+- name: Yiyang Lin
+- netid: ylin363
+
+
+## query 2 
+- A Description of how you optimize the query
+
+sqlite3 TPC-H.db < query2.sql;
+Run Time: real 0.381 user 0.320539 sys 0.057573
+Run Time: real 0.406 user 0.338588 sys 0.061878
+Run Time: real 0.418 user 0.340681 sys 0.063240
+Run Time: real 0.403 user 0.335654 sys 0.061602
+Run Time: real 0.437 user 0.356431 sys 0.067544
+Take down the user time and run 5 times to take the average.
+(0.320539+ 0.338588+ 0.340681+ 0.335654+ 0.356431)/5 = 0.3383786
+
+
+Strategy 1: predefine a new table by nature join to merge tables REGION(R_) and NATION(N_) and found that the subquery and the outer query both use this table, so this new nationWithRegion can be used twice. It provides 
+
+improvement = (t_base - t_opt)/t_base = (0.3383786 - 0.124668) / 0.3383786 = 0.63157244577
+
+comes with 63.15% improved performance.
+
+Strategy 2: Use adding indexes in query planner subsystem within the SQL database engine to modify.
+In PART index "Q2Idx1" add a column "p_size".
+"CREATE INDEX Q2Idx1 ON PART(p_size);" is the index that I created. The result provided 97.81% improved performance.
+
+
+improvement = (t_base - t_opt)/t_base = (0.3383786 - 0.007400) / 0.3383786 = 0.97813100473
+
+- The optimized query shows 97.81%  improvement over baseline. 
+
+
+## query 3
+- A Description of how you optimize the query
+
+sqlite3 TPC-H.db < query3.sql;
+Run Time: real 2.422 user 1.930927 sys 0.432373
+Run Time: real 2.493 user 1.976569 sys 0.445881
+Run Time: real 2.370 user 1.894747 sys 0.423085
+Run Time: real 2.451 user 1.944119 sys 0.434150
+Run Time: real 2.471 user 1.962941 sys 0.442797
+Take down the user time and run 5 times to take the average.
+(1.930927 + 1.976569 + 1.894747 + 1.944119 + 1.962941) / 5 = 1.9418606
+
+
+Strategy 1: rewrite the code in "from" and "where" parts, for example, write the date filtering into "from" part, but there is not significant improvement on the performance.
+
+Strategy 2: Use adding indexes in query planner subsystem within the SQL database engine to modify.
+In LINEITEM index "Q3Idx1" add two columns "l_orderkey", "l_shipdate" at the same time.
+"CREATE INDEX Q3Idx1 ON LINEITEM(l_orderkey, l_shipdate);"
+It provides 
+
+improvement = (t_base - t_opt)/t_base = (1.9418606 - 1.399827) / 1.9418606 = 0.27913105606
+
+- The optimized query shows 27.91 % improvement over baseline. 
+
+
+## query 4 
+- A Description of how you optimize the query
+
+sqlite3 TPC-H.db < query4.sql;
+Run Time: real 0.671 user 0.490705 sys 0.165665
+Run Time: real 0.663 user 0.480256 sys 0.162934
+Run Time: real 0.665 user 0.482186 sys 0.162540
+Run Time: real 0.681 user 0.492881 sys 0.167189
+Run Time: real 0.714 user 0.514883 sys 0.176540
+Take down the user time and run 5 times to take the average.
+(0.490705 + 0.480256 + 0.482186 + 0.492881 + 0.514883) / 5 = 0.4921822
+
+
+Strategy 1: Changing the the order of DATE
+"o_orderdate < "1993-10-01" --'[DATE]'" and "o_orderdate >= "1993-07-01" --'[DATE]'"
+It provides 
+
+improvement = (t_base - t_opt)/t_base = (0.4921822 - 0.394191) / 0.4921822 = 0.19909537565
+comes with 19.90% improved performance.
+
+
+Strategy 2: Use adding indexes in query planner subsystem within the SQL database engine to modify.
+In ORDERS index "Q4Idx2" add a column "o_orderdate".
+"CREATE INDEX Q4Idx2 ON ORDERS(o_orderdate);"
+It provides 
+
+improvement = (t_base - t_opt)/t_base = (0.4921822 - 0.360953) / 0.4921822 = 0.26662727745
+
+
+- The optimized query shows 26.66 % improvement over baseline. 

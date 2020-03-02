@@ -1,0 +1,26 @@
+
+TestCases in 'main.cpp' file:
+
+test1:
+	Create a relation with tuples valued 0 to relationSize and perform index tests
+
+test2:
+	Create a relation with tuples valued 0 to relationSize in reverse order and perform index tests
+
+test3:
+	Create a relation with tuples valued 0 to relationSize in random order and perform index tests
+
+test4:
+	Create a relation with tuples valued 0 to relationSize in forward order and insert negative number and perform index test
+	
+test5:
+	create Relation 0 Size Tree and check if it is empty and should match index test
+
+test6:
+	Create a relation with tuples valued 0 to relationSize in random order with Large Size such as (50000)
+
+test7:
+	Flushing file with a pinned page, should catch an PagePinnedException if the page has been flushed
+
+test8:
+	Unpin Allocated Page Twice, should catch an PageNotPinnedException if unpin page

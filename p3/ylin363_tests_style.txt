@@ -1,0 +1,33 @@
+Hello,
+
+Your assignment 3 has been graded and the grades are going to be on canvas. Here are some details about the grades, you can find the explanation on piazza.
+
+The points breakdown is 20,14,35,18,5,2,2,0,2,98
+.
+
+Attached is a file regarding the programming style and designed tests. Also a manual grading file may or may not be attached, if you can't find it, then alas your program is doing alright.
+
+If you have any problem, please feel free to ask on piazza, or directly Kyle and me for help.
+
+Hope it helps!
+
+Regards,
+Ruohui
+
+
+
+B+ Tree Manual Grading, CS 564                  SEMESTER: Fall 2019
+===============================================================================
+
+ Tests (15 Points Possible):
+    
+ Programming Style (5 Points Possible):
+
+        
+Comments:
+Great job on testing, very thorough
+Full 20 points for tests and formatting
+
+===============================================================================
+    
+    

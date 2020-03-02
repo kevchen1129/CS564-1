@@ -1,0 +1,24 @@
+B+ Tree Additional Manual Grading, CS 564                  SEMESTER: Fall 2019
+Grader: <name>
+===============================================================================
+
+ Insert Algorithm (20 Points Possible):
+ -8: Didn't make a mechanism to check if the root was a leaf when first inserting
+      NOTE: Could include always making root a non-leaf, or detecting whether the root has been split.
+ -6: Didn't copy up values of leaf nodes to non-leaf nodes when a split occurred
+ -6: Didn't shift values in a leaf to make space for new entry
+
+ Scan Functions (10 Points Possible): 
+ -10: StartScan() doesn't traverse down the tree to find a page, or
+      doesn't also do a linear search on that page. 
+      
+ General Completeness (5 Points Possible): 
+ -5: Doesn't have a reasonable amount of code in every function
+
+        
+Comments:
+
+
+===============================================================================
+    
+    

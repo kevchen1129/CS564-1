@@ -1,0 +1,22 @@
+B+ Tree Manual Grading, CS 564                  SEMESTER: Fall 2019
+===============================================================================
+
+ Tests (15 Points Possible):
+ -15: No added tests found
+ -15: Tests missing from main.cpp, outline.txt not found
+ -2: Outline.txt missing but tests found in main.cpp
+ -5: Only one new test added
+ -5: Test descriptions/comments not found in outline.txt or test location
+ -3: All tests related to exception testing 
+ -7: Test descriptions found only in outline.txt...no actual code written. 
+    
+ Programming Style (5 Points Possible):
+ -5: Code is difficult to read (no comments, poor indentation, nondescriptive var names, etc.)
+
+        
+Comments:
+
+
+===============================================================================
+    
+    

@@ -1,0 +1,74 @@
+GRADING - COMPRESSION (total = 5)
+	- ylin363 did not compress the submission files as instructed (no directory)
+GRADES FOR COMPRESSION: 0/5
+
+GRADING - CORRECTNESS FOR PREPROCESSING (total = 5)
+	- unexpected preprocessing step: drop table if exists nationwithregion;
+	- unexpected preprocessing step: drop index if exists q2idx1;
+	- unexpected preprocessing step: drop index if exists q2idx2;
+	- unexpected preprocessing step: drop index if exists q2idx3;
+	- unexpected preprocessing step: create table		nationwithregion as select	n_nationkey as w_nationkey , r_name as regionname, n_name as nationname from		nation, region where	n_regionkey = r_regionkey;
+	- [info] add index q2idx1 for table part
+	- unexpected preprocessing step: drop index if exists q3idx1;
+	- unexpected preprocessing step: drop index if exists q3idx2;
+	- unexpected preprocessing step: drop index if exists q3idx3;
+	- [info] add index q3idx1 for table lineitem
+	- unexpected preprocessing step: drop index if exists q4idx1;
+	- unexpected preprocessing step: drop index if exists q4idx2;
+	- unexpected preprocessing step: drop index if exists q4idx3;
+	- [info] add index q4idx2 for table orders
+	- [info] drop index q2idx1
+	- drop unexpeced index q2idx2 from set(['q3idx1', 'q4idx2'])
+	- drop unexpeced index q2idx3 from set(['q3idx1', 'q4idx2'])
+	- [info] drop index q3idx1
+	- drop unexpeced index q3idx2 from set(['q4idx2'])
+	- drop unexpeced index q3idx3 from set(['q4idx2'])
+	- drop unexpeced index q4idx1 from set(['q4idx2'])
+	- [info] drop index q4idx2
+	- drop unexpeced index q4idx3 from set([])
+	- drop unexpeced index part_index from set([])
+	- drop unexpeced index part_index_size from set([])
+	- drop unexpeced index part_index_type from set([])
+	- drop unexpeced index supplier_index from set([])
+	- drop unexpeced index supplier_index_name from set([])
+	- drop unexpeced index supplier_index_suppkey from set([])
+	- drop unexpeced index partsupp_index from set([])
+	- drop unexpeced index partsupp_index_supplycost from set([])
+	- drop unexpeced index nation_index from set([])
+	- drop unexpeced index nation_index_nationkey from set([])
+	- drop unexpeced index region_index from set([])
+	- drop unexpeced index region_index_regionkey from set([])
+	- drop unexpeced index customer_index from set([])
+	- drop unexpeced index customer_index_mk from set([])
+	- drop unexpeced index orders_index from set([])
+	- drop unexpeced index orders_index_custkey from set([])
+	- drop unexpeced index orders_index_orderdate from set([])
+	- drop unexpeced index lineitem_index from set([])
+	- drop unexpeced index lineitem_index_shipdate from set([])
+GRADES FOR CORRECTNESS FOR PREPROCESSING: 5/5
+
+GRADING - NO MORE THAN THREE INDEXES PER TABLE (total = 15)
+GRADES FOR NO MORE THAN THREE INDEXES PER TABLE: 15/15
+
+ylin363
+GRADING - USING 3+ STRATEGIES (total = 15))
+GRADING - QUERY OPTIMIZATION (total = 20 * 3)
+	- q2 improvements: 98.69
+GRADES FOR q2: 20/20
+
+	- q3 improvements: 3.16
+GRADES FOR q3: 20/20
+
+	- q4 improvements: 32.08
+GRADES FOR q4: 20.0/20
+
+GRADING - QUERY OPTIMIZATION (total = 20 * 3)
+	- q2 improvements: 98.77
+GRADES FOR q2: 20/20
+
+	- q3 improvements: 33.56
+GRADES FOR q3: 20/20
+
+	- q4 improvements: 50.3
+GRADES FOR q4: 20/20
+

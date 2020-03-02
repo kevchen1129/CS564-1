@@ -1,0 +1,17 @@
+query2     | 0.165332 | 0.172484 | 0.169638 | 0.178632 | 0.171668 => AVG: .171550
+query3     | 1.09542 | 1.12838 | 1.13008 | 1.09907 | 1.12881 => AVG: 1.116352
+query4     | 0.256529 | 0.260938 | 0.251459 | 0.247574 | 0.256799 => AVG: .254659
+
+running ./preprocessing.sql...done!
+query2_opt | 0.002865 | 0.001948 | 0.001932 | 0.002718 | 0.001052 => AVG: .002103
+query3_opt | 0.72954 | 0.732261 | 0.751088 | 0.741303 | 0.754316 => AVG: .741701
+query4_opt | 0.137144 | 0.126873 | 0.127719 | 0.115799 | 0.125307 => AVG: .126568
+
+query2_opt percent improvement: 98.77%
+
+query3_opt percent improvement: 33.56%
+
+query4_opt percent improvement: 50.30%
+
+running ./clean.sql...done!
+

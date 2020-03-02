@@ -14,51 +14,49 @@
 #include "file_iterator.h"
 #include "page_iterator.h"
 
-namespace badgerdb
-{
+namespace badgerdb {
 
 /**
  * @brief This class is used to sequentially scan records in a relation.
  */
-class FileScan
-{
-public:
-  FileScan(const std::string &name, BufMgr *bufMgr);
+    class FileScan {
+    public:
+        FileScan(const std::string &name, BufMgr *bufMgr);
 
-  ~FileScan();
+        ~FileScan();
 
-  //return RecordId of next record that satisfies the scan
-  void scanNext(RecordId &outRid);
+        //return RecordId of next record that satisfies the scan
+        void scanNext(RecordId &outRid);
 
-  //read current record, returning pointer and length
-  std::string getRecord();
+        //read current record, returning pointer and length
+        std::string getRecord();
 
-  //marks current page of scan dirty
-  void markDirty();
+        //marks current page of scan dirty
+        void markDirty();
 
-private:
-  /**
-   * File which is being scanned.
-   */
-  PageFile *file;
+    private:
+        /**
+         * File which is being scanned.
+         */
+        PageFile *file;
 
-  /**
-   * Buffer Manager instance used to read/write pages into/from buffer pool.
-   */
-  BufMgr *bufMgr;
+        /**
+         * Buffer Manager instance used to read/write pages into/from buffer pool.
+         */
+        BufMgr *bufMgr;
 
-  /**
-   * Current page being scanned.
-   */
-  Page *curPage;
+        /**
+         * Current page being scanned.
+         */
+        Page *curPage;
 
-  FileIterator filePageIter;
-  PageIterator pageRecordIter;
+        FileIterator filePageIter;
+        PageIterator pageRecordIter;
 
-  /**
-   * True if page has been updated
-   */
-  bool curDirtyFlag;
-};
+        /**
+         * True if page has been updated
+         */
+        bool curDirtyFlag;
+    };
 
 } // namespace badgerdb
